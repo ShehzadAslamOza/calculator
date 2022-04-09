@@ -1,3 +1,83 @@
-h1 {
-  color: green;
+body {
+  padding: 0px;
+  margin: 0px;
+  border: 1px solid red;
+  background-color: azure;
+}
+
+#calculator {
+  background-color: rgb(187, 181, 181);
+
+  width: 400px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid black;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr;
+  border-radius: 10px;
+}
+
+#screen {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  grid-column: 1;
+  grid-row: 1;
+  margin: 5%;
+  background-color: azure;
+  border: solid 2px black;
+  border-radius: 10px;
+}
+
+#prevCalc {
+  grid-column: 1;
+  grid-row: 1;
+  /* background-color: aqua; */
+  margin-top: 24px;
+  padding-right: 20px;
+  text-align: right;
+  font-size: 18px;
+}
+
+#currentCalc {
+  grid-column: 1;
+  grid-row: 2;
+  /* background-color: pink; */
+  margin-top: 5px;
+  padding-right: 15px;
+  text-align: right;
+  font-size: 24px;
+}
+
+#btnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-column: 1;
+  grid-row: 2;
+  margin: 0% 5% 5% 5%;
+}
+
+.btn {
+  background-color: azure;
+  margin: 3px;
+  border: solid 2px black;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.btn-span-2 {
+  grid-column: span 2;
+}
+
+.btn-blue {
+  background-color: rgb(196, 157, 240);
+}
+
+.btn-red {
+  background-color: rgb(238, 150, 150);
 }
