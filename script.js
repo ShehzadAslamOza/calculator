@@ -24,9 +24,9 @@ operatorKeys.forEach((operatorBtn) => {
 });
 
 pointBtn.addEventListener("click", () => alert(pointBtn.textContent));
-deleteBtn.addEventListener("click", () => alert(deleteBtn.textContent));
+deleteBtn.addEventListener("click", () => deleteNum());
 clearBtn.addEventListener("click", () => clear());
-equalsBtn.addEventListener("click", () => alert(equalsBtn.textContent));
+equalsBtn.addEventListener("click", () => equals());
 
 function handleOperator(operation) {
   if (secondNumber == "") {
@@ -40,6 +40,17 @@ function handleOperator(operation) {
     firstNumber = answer;
     secondNumber = "";
     operator = operation;
+  }
+}
+
+function equals() {
+  if (operator != "" && firstNumber != "" && secondNumber != "") {
+    let answer = operate(operator, firstNumber, secondNumber);
+    prevCalcScreen.textContent =
+      firstNumber + " " + operator + " " + secondNumber + "=";
+    currentCalcScreen.textContent = answer;
+    firstNumber = answer;
+    secondNumber = "";
   }
 }
 
@@ -83,23 +94,33 @@ function clear() {
   operator = "";
 }
 
+function deleteNum() {
+  if (operator == "") {
+    firstNumber = firstNumber.slice(0, firstNumber.length - 1);
+    currentCalcScreen.textContent = firstNumber;
+  } else {
+    secondNumber = secondNumber.slice(0, secondNumber.length - 1);
+    currentCalcScreen.textContent = secondNumber;
+  }
+}
+
 function add(a, b) {
-  return parseInt(a) + parseInt(b);
+  return parseFloat(a) + parseFloat(b);
 }
 
 function multiply(a, b) {
-  return parseInt(a) * parseInt(b);
+  return parseFloat(a) * parseFloat(b);
 }
 
 function subtract(a, b) {
-  return parseInt(a) - parseInt(b);
+  return parseFloat(a) - parseFloat(b);
 }
 
 function divide(a, b) {
-  if (parseInt(b) == 0) {
+  if (parseFloat(b) == 0) {
     alert("You cant divide by Zero");
     return;
   }
 
-  return parseInt(a) / parseInt(b);
+  return parseFloat(a) / parseFloat(b);
 }
