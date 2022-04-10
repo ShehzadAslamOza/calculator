@@ -11,6 +11,7 @@ let equalsBtn = document.querySelector(".equalsBtn");
 let prevCalcScreen = document.querySelector("#prevCalc");
 let currentCalcScreen = document.querySelector("#currentCalc");
 
+// Event Listners
 numberKeys.forEach((numberBtn) => {
   numberBtn.addEventListener("click", () => {
     handleNumber(numberBtn.textContent);
@@ -23,11 +24,12 @@ operatorKeys.forEach((operatorBtn) => {
   });
 });
 
-pointBtn.addEventListener("click", () => alert(pointBtn.textContent));
+pointBtn.addEventListener("click", () => handlePoint());
 deleteBtn.addEventListener("click", () => deleteNum());
 clearBtn.addEventListener("click", () => clear());
 equalsBtn.addEventListener("click", () => equals());
 
+// Functions
 function handleOperator(operation) {
   if (secondNumber == "") {
     operator = operation;
@@ -86,6 +88,29 @@ function handleNumber(num) {
   }
 }
 
+function handlePoint() {
+  if (operator == "") {
+    if (firstNumber == "") {
+      firstNumber = "0.";
+    } else {
+      if (!firstNumber.includes(".")) {
+        firstNumber = firstNumber + ".";
+      }
+    }
+
+    currentCalcScreen.textContent = firstNumber;
+  } else {
+    if (secondNumber == "") {
+      secondNumber = "0.";
+    } else {
+      if (!secondNumber.includes(".")) {
+        secondNumber = secondNumber + ".";
+      }
+    }
+    currentCalcScreen.textContent = secondNumber;
+  }
+}
+
 function clear() {
   prevCalcScreen.textContent = "";
   currentCalcScreen.textContent = "0";
@@ -122,5 +147,11 @@ function divide(a, b) {
     return;
   }
 
-  return parseFloat(a) / parseFloat(b);
+  let ans = parseFloat(a) / parseFloat(b) + "";
+
+  if (ans.includes(".")) {
+    return parseFloat(ans).toFixed(2);
+  }
+
+  return ans;
 }
