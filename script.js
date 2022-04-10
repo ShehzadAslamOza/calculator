@@ -1,3 +1,7 @@
+let firstNumber = "";
+let secondNumber = "";
+let operator = "";
+
 let numberKeys = document.querySelectorAll(".data-number");
 let operatorKeys = document.querySelectorAll(".data-operator");
 let pointBtn = document.querySelector(".pointBtn");
@@ -9,33 +13,93 @@ let currentCalcScreen = document.querySelector("#currentCalc");
 
 numberKeys.forEach((numberBtn) => {
   numberBtn.addEventListener("click", () => {
-    alert(numberBtn.textContent);
+    handleNumber(numberBtn.textContent);
   });
 });
 
-operatorKeys.forEach((numberBtn) => {
-  numberBtn.addEventListener("click", () => {
-    alert(numberBtn.textContent);
+operatorKeys.forEach((operatorBtn) => {
+  operatorBtn.addEventListener("click", () => {
+    handleOperator(operatorBtn.textContent);
   });
 });
 
 pointBtn.addEventListener("click", () => alert(pointBtn.textContent));
 deleteBtn.addEventListener("click", () => alert(deleteBtn.textContent));
-clearBtn.addEventListener("click", () => alert(clearBtn.textContent));
+clearBtn.addEventListener("click", () => clear());
 equalsBtn.addEventListener("click", () => alert(equalsBtn.textContent));
 
+function handleOperator(operation) {
+  if (secondNumber == "") {
+    operator = operation;
+    prevCalcScreen.textContent = firstNumber + " " + operator;
+  } else {
+    //prevCalcScreen.textContent = firstNumber + " " + operation;
+    let ans = operate(operator, firstNumber, secondNumber);
+    prevCalcScreen.textContent = answer + " " + operation;
+    currentCalcScreen.textContent = answer;
+    firstNumber = answer;
+    secondNumber = "";
+    operator = operation;
+  }
+}
+
+function operate(operation, a, b) {
+  answer = "";
+
+  switch (operation) {
+    case "+":
+      answer = add(a, b);
+      break;
+    case "-":
+      answer = subtract(a, b);
+      break;
+    case "x":
+      answer = multiply(a, b);
+      break;
+    case "÷":
+      answer = divide(a, b);
+      break;
+  }
+
+  return answer;
+}
+
+function handleNumber(num) {
+  console.log(num);
+  if (operator == "") {
+    firstNumber = firstNumber + num;
+    currentCalcScreen.textContent = firstNumber;
+  } else {
+    secondNumber = secondNumber + num;
+    currentCalcScreen.textContent = secondNumber;
+  }
+}
+
+function clear() {
+  prevCalcScreen.textContent = "";
+  currentCalcScreen.textContent = "0";
+  firstNumber = "";
+  secondNumber = "";
+  operator = "";
+}
+
 function add(a, b) {
-  return a + b;
+  return parseInt(a) + parseInt(b);
 }
 
 function multiply(a, b) {
-  return a * b;
+  return parseInt(a) * parseInt(b);
 }
 
 function subtract(a, b) {
-  return a - b;
+  return parseInt(a) - parseInt(b);
 }
 
 function divide(a, b) {
-  return a / b;
+  if (parseInt(b) == 0) {
+    alert("You cant divide by Zero");
+    return;
+  }
+
+  return parseInt(a) / parseInt(b);
 }

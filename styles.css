@@ -45,7 +45,7 @@ main {
   margin-top: 24px;
   padding-right: 20px;
   text-align: right;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #currentCalc {
@@ -55,7 +55,7 @@ main {
   margin-top: 5px;
   padding-right: 15px;
   text-align: right;
-  font-size: 24px;
+  font-size: 30px;
 }
 
 #btnGrid {
